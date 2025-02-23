@@ -7,6 +7,12 @@
     --background: 338 81% 83%;
     --foreground: 184 77.9% 46.1%;
 
+    --card: 338 81% 83%;
+    --card-foreground: 184 77.9% 46.1%;
+
+    --popover: 338 81% 83%;
+    --popover-foreground: 184 77.9% 46.1%;
+
     --primary: 184 77.9% 46.1%;
     --primary-foreground: 338 81% 83%;
 
@@ -18,6 +24,15 @@
 
     --accent: 184 77.9% 46.1%;
     --accent-foreground: 338 81% 83%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 184 77.9% 46.1%;
+    --input: 184 77.9% 46.1%;
+    --ring: 184 77.9% 46.1%;
+
+    --radius: 0.5rem;
 
     --white: 0 0% 100%;
   }

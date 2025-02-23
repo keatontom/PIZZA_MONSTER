@@ -16,9 +16,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="stylesheet" href="https://use.typekit.net/[YOUR-KIT-CODE].css" />
-      </head>
       <body className="font-aktiv antialiased">
         <div className="min-h-screen bg-background">
           <header className="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-sm">
