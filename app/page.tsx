@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useState } from "react"
+import PizzaMenu from './components/PizzaMenu'
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -11,7 +12,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen">
+    <div>
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center px-4 bg-background">
         <AnimatePresence>
@@ -27,7 +28,10 @@ export default function Home() {
               className="text-center w-full"
             >
               <motion.h1
-                className="text-[4rem] sm:text-[5.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-bold text-primary leading-none tracking-normal"
+                className="sharp-text text-[4rem] sm:text-[5.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-extrabold text-primary leading-none tracking-normal"
+                style={{
+                  WebkitTextStroke: "2px text-primary",
+                }}
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 transition={{
@@ -45,7 +49,7 @@ export default function Home() {
                 className="mt-8 md:mt-12 space-y-6 md:space-y-8"
               >
                 <div className="space-y-2">
-                  <p className="text-[46.8px] leading-[46.8px] font-bold text-primary tracking-normal break-all antialiased">
+                  <p className="sharp-text text-[46.8px] leading-[46.8px] font-bold text-primary tracking-normal break-all antialiased">
                     168 DIVISION ST
                   </p>
                 </div>
@@ -55,8 +59,8 @@ export default function Home() {
         </AnimatePresence>
       </section>
 
-      {/* Info Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-4 bg-primary">
+      {/* Green Info Section */}
+      <section className="min-h-[120vh] flex flex-col items-center justify-center px-4 bg-primary">
         <AnimatePresence>
           {isLoaded && (
             <motion.div
@@ -67,20 +71,34 @@ export default function Home() {
                 type: "spring",
                 bounce: 0.4,
               }}
-              className="text-center w-full space-y-12 md:space-y-16"
+              className="text-center w-full space-y-16 md:space-y-24 max-w-[100vw] px-4"
             >
-              <p className="text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] font-bold text-background tracking-normal break-all antialiased leading-none">
+              <p 
+                className="sharp-text text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal overflow-hidden"
+                style={{ WebkitTextStroke: "3px text-background" }}
+              >
                 NOW OPEN 11AM
               </p>
-              <p className="text-[4rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] font-bold text-background tracking-normal break-all antialiased leading-none">
+              <p 
+                className="sharp-text text-[4rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal overflow-hidden"
+                style={{ WebkitTextStroke: "3px text-background" }}
+              >
                 MONDAY TO SATURDAY
               </p>
-              <p className="text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] font-bold text-background tracking-normal break-all antialiased leading-none mt-12">
+              <p 
+                className="sharp-text text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal overflow-hidden"
+                style={{ WebkitTextStroke: "3px text-background" }}
+              >
                 613 217 1195
               </p>
             </motion.div>
           )}
         </AnimatePresence>
+      </section>
+
+      {/* Menu Section */}
+      <section className="min-h-screen bg-background">
+        <PizzaMenu />
       </section>
     </div>
   )
