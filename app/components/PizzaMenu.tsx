@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useState } from 'react'
 
 interface PizzaItem {
   name: string
@@ -16,6 +17,12 @@ interface SaladItem {
   description: string
   price: string
   imagePath: string
+}
+
+interface CartItem {
+  name: string
+  quantity: number
+  price: string
 }
 
 const pizzas: PizzaItem[] = [
@@ -70,6 +77,40 @@ const salads: SaladItem[] = [
 ]
 
 export default function PizzaMenu() {
+  const [cart, setCart] = useState<CartItem[]>([])
+
+  const addToCart = (name: string, price: string) => {
+    setCart(prevCart => {
+      const existingItem = prevCart.find(item => item.name === name)
+      if (existingItem) {
+        return prevCart.map(item =>
+          item.name === name
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      }
+      return [...prevCart, { name, quantity: 1, price }]
+    })
+  }
+
+  const removeFromCart = (name: string) => {
+    setCart(prevCart => {
+      const existingItem = prevCart.find(item => item.name === name)
+      if (existingItem && existingItem.quantity > 1) {
+        return prevCart.map(item =>
+          item.name === name
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+      }
+      return prevCart.filter(item => item.name !== name)
+    })
+  }
+
+  const getItemQuantity = (name: string) => {
+    return cart.find(item => item.name === name)?.quantity || 0
+  }
+
   return (
     <section className="bg-white py-8 overflow-x-hidden">
       <div className="max-w-[90%] mx-auto">
@@ -97,7 +138,9 @@ export default function PizzaMenu() {
               <div className="text-center">
                 <h3 className="text-primary text-xl font-medium mb-2">{pizza.name}</h3>
                 <p className="text-primary/70 mb-2 text-base">{pizza.description}</p>
-                <p className="text-primary font-medium text-lg">{pizza.price}</p>
+                <p className="text-primary font-medium text-lg mb-3">{pizza.price}</p>
+                <div className="flex items-center justify-center gap-4">
+                </div>
               </div>
             </div>
           ))}
@@ -120,7 +163,9 @@ export default function PizzaMenu() {
               </div>
               <h3 className="text-primary text-xl font-medium mb-2">{salad.name}</h3>
               <p className="text-primary/70 mb-2 text-base">{salad.description}</p>
-              <p className="text-primary font-medium text-lg">{salad.price}</p>
+              <p className="text-primary font-medium text-lg mb-3">{salad.price}</p>
+              <div className="flex items-center justify-center gap-4">
+              </div>
             </div>
           ))}
         </div>
