@@ -113,17 +113,17 @@ export default function PizzaMenu() {
 
   return (
     <section className="bg-white py-8 overflow-x-hidden">
-      <div className="max-w-[90%] mx-auto">
-        <h2 className="sharp-text text-[5rem] sm:text-[6rem] md:text-[7rem] font-bold text-primary tracking-normal text-center mb-12">
+      <div className="max-w-[95%] sm:max-w-[90%] mx-auto">
+        <h2 className="sharp-text text-[3.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] font-bold text-primary tracking-normal text-center mb-8 sm:mb-12">
           PIES
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-32 gap-y-16 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 md:gap-x-16 lg:gap-x-24 gap-y-12 sm:gap-y-16 mb-16 sm:mb-20">
           {pizzas.map((pizza) => (
             <div key={pizza.name} className="group">
               <div 
-                className={`relative -ml-[5%] mb-6 transition-transform duration-300 group-hover:scale-105`}
+                className={`relative -ml-[2.5%] sm:-ml-[5%] mb-4 sm:mb-6 transition-transform duration-300 group-hover:scale-105`}
                 style={{
-                  width: pizza.imageWidth || "110%",
+                  width: pizza.imageWidth || "105%",
                   aspectRatio: pizza.aspectRatio || "1/1"
                 }}
               >
@@ -132,13 +132,13 @@ export default function PizzaMenu() {
                   alt={pizza.name}
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 90vw, (max-width: 1440px) 30vw, 500px"
+                  sizes="(max-width: 640px) 95vw, (max-width: 1024px) 45vw, 30vw"
                 />
               </div>
-              <div className="text-center">
-                <h3 className="text-primary text-xl font-medium mb-2">{pizza.name}</h3>
-                <p className="text-primary/70 mb-2 text-base">{pizza.description}</p>
-                <p className="text-primary font-medium text-lg mb-3">{pizza.price}</p>
+              <div className="text-center px-2 sm:px-4">
+                <h3 className="text-primary text-lg sm:text-xl font-medium mb-2">{pizza.name}</h3>
+                <p className="text-primary/70 mb-2 text-sm sm:text-base">{pizza.description}</p>
+                <p className="text-primary font-medium text-base sm:text-lg mb-3">{pizza.price}</p>
                 <div className="flex items-center justify-center gap-4">
                 </div>
               </div>
@@ -146,24 +146,26 @@ export default function PizzaMenu() {
           ))}
         </div>
 
-        <h2 className="sharp-text text-[4rem] sm:text-[5rem] md:text-[6rem] font-bold text-primary tracking-normal text-center mb-12">
+        <h2 className="sharp-text text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-bold text-primary tracking-normal text-center mb-8 sm:mb-12">
           SALAD
         </h2>
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-xl sm:max-w-2xl mx-auto px-4 sm:px-0">
           {salads.map((salad) => (
-            <div key={salad.name} className="text-center">
-              <div className="flex justify-center mb-8">
-                <Image
-                  src={salad.imagePath}
-                  alt={salad.name}
-                  width={500}
-                  height={500}
-                  className="object-contain"
-                />
+            <div key={salad.name} className="text-center mb-12 last:mb-0">
+              <div className="flex justify-center mb-6 sm:mb-8">
+                <div className="relative w-full max-w-[300px] sm:max-w-[400px] aspect-square">
+                  <Image
+                    src={salad.imagePath}
+                    alt={salad.name}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 300px, 400px"
+                  />
+                </div>
               </div>
-              <h3 className="text-primary text-xl font-medium mb-2">{salad.name}</h3>
-              <p className="text-primary/70 mb-2 text-base">{salad.description}</p>
-              <p className="text-primary font-medium text-lg mb-3">{salad.price}</p>
+              <h3 className="text-primary text-lg sm:text-xl font-medium mb-2">{salad.name}</h3>
+              <p className="text-primary/70 mb-2 text-sm sm:text-base">{salad.description}</p>
+              <p className="text-primary font-medium text-base sm:text-lg mb-3">{salad.price}</p>
               <div className="flex items-center justify-center gap-4">
               </div>
             </div>

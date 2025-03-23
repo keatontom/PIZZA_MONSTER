@@ -8,8 +8,8 @@ export default function Navigation() {
   const pathname = usePathname()
 
   return (
-    <nav className="px-4 h-14 flex items-center justify-center relative tracking-wide font-normal">
-      <div className="absolute left-4 flex items-center space-x-4 sm:space-x-6 text-base">
+    <nav className="px-4 h-14 flex items-center justify-between md:justify-center relative tracking-wide font-normal">
+      <div className="hidden md:flex absolute left-4 items-center space-x-4 sm:space-x-6 text-base">
         <Link 
           href="/hours" 
           className={`sharp-text text-white relative after:absolute after:left-0 after:bottom-[-4px] after:h-[1px] after:bg-white after:transition-all after:duration-300 ${
@@ -35,12 +35,26 @@ export default function Navigation() {
           ORDER NOW
         </Link>
       </div>
+
+      {/* Mobile Menu */}
+      <div className="flex md:hidden space-x-3">
+        <Link
+          href="/order"
+          className={`bg-primary text-white px-3 py-1.5 text-sm rounded-full transition-colors font-medium ${
+            pathname === '/order' ? 'bg-white !text-primary' : 'hover:bg-white hover:text-primary'
+          }`}
+        >
+          ORDER
+        </Link>
+      </div>
+
       <Link 
         href="/"
         className="sharp-text text-white text-sm tracking-[0.2em] font-medium relative after:absolute after:left-0 after:bottom-[-4px] after:h-[1px] after:bg-white after:w-0 after:transition-all after:duration-300 hover:after:w-full"
       >
         PIZZA MONSTER
       </Link>
+
       <div className="absolute right-4">
         <Link
           href="http://instagram.com/iamapizzamonster"
@@ -50,7 +64,7 @@ export default function Navigation() {
         >
           <div className="absolute inset-0 bg-primary/0 rounded-full transition-all duration-300 group-hover:bg-primary/10"></div>
           <div className="relative">
-            <Instagram className="h-6 w-6 text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-6" />
+            <Instagram className="h-5 w-5 md:h-6 md:w-6 text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-6" />
             <div className="absolute inset-0 border border-white/0 rounded-full transition-all duration-300 group-hover:border-white/20 group-hover:scale-125"></div>
           </div>
           <span className="sr-only">Instagram</span>

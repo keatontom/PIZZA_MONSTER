@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-4 bg-background">
+      <section className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 bg-background">
         <AnimatePresence>
           {isLoaded && (
             <motion.div
@@ -25,13 +25,10 @@ export default function Home() {
                 type: "spring",
                 bounce: 0.4,
               }}
-              className="text-center w-full"
+              className="text-center w-full max-w-7xl mx-auto"
             >
               <motion.h1
-                className="sharp-text text-[4rem] sm:text-[5.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-extrabold text-primary leading-none tracking-normal"
-                style={{
-                  WebkitTextStroke: "2px text-primary",
-                }}
+                className="sharp-text text-[3rem] xs:text-[4rem] sm:text-[5.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-extrabold text-primary leading-none tracking-normal [webkit-text-stroke:1px_var(--primary)] sm:[webkit-text-stroke:2px_var(--primary)]"
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 transition={{
@@ -46,11 +43,11 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
-                className="mt-8 md:mt-12 space-y-6 md:space-y-8"
+                className="mt-6 sm:mt-8 md:mt-12 space-y-4 sm:space-y-6 md:space-y-8"
               >
                 <div className="space-y-2">
-                  <p className="sharp-text text-[46.8px] leading-[46.8px] font-bold text-primary tracking-normal break-all antialiased">
-                    168 DIVISION ST
+                  <p className="sharp-text text-[2rem] xs:text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight font-bold text-primary tracking-normal break-all antialiased">
+                    213 MONTREAL STREET
                   </p>
                 </div>
               </motion.div>
@@ -60,7 +57,7 @@ export default function Home() {
       </section>
 
       {/* Green Info Section */}
-      <section className="min-h-[120vh] flex flex-col items-center justify-center px-4 bg-primary">
+      <section className="min-h-[120vh] flex flex-col items-center justify-center px-4 sm:px-6 bg-primary overflow-hidden">
         <AnimatePresence>
           {isLoaded && (
             <motion.div
@@ -71,23 +68,20 @@ export default function Home() {
                 type: "spring",
                 bounce: 0.4,
               }}
-              className="text-center w-full space-y-16 md:space-y-24 max-w-[100vw] px-4"
+              className="text-center w-full space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-24 max-w-[100vw]"
             >
               <p 
-                className="sharp-text text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal overflow-hidden"
-                style={{ WebkitTextStroke: "3px text-background" }}
+                className="sharp-text text-[2.5rem] xs:text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]"
               >
                 NOW OPEN 11AM
               </p>
               <p 
-                className="sharp-text text-[4rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal overflow-hidden"
-                style={{ WebkitTextStroke: "3px text-background" }}
+                className="sharp-text text-[2rem] xs:text-[3rem] sm:text-[4rem] md:text-[6rem] lg:text-[8rem] xl:text-[9rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]"
               >
                 MONDAY TO SATURDAY
               </p>
               <p 
-                className="sharp-text text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal overflow-hidden"
-                style={{ WebkitTextStroke: "3px text-background" }}
+                className="sharp-text text-[2.5rem] xs:text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]"
               >
                 613 217 1195
               </p>
