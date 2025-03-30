@@ -43,7 +43,11 @@
     @apply bg-background text-foreground font-black;
   }
 }
-
+.skull {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 .sharp-text {
   font-family: 'Montserrat', sans-serif;
 }
