@@ -17,7 +17,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 bg-background relative">
         <div className="absolute inset-0 z-0">
-          <Spline scene="https://prod.spline.design/CX-KSlc716NS3epA/scene.splinecode" />
+          <Spline scene="https://prod.spline.design/IQuCOfATJQs9GmDE/scene.splinecode" />
         </div>
         <div className="relative z-10">
           <AnimatePresence>
