@@ -1,16 +1,18 @@
-"use client"
+'use client';
 
 import Spline from '@splinetool/react-spline';
-import { motion, AnimatePresence } from "framer-motion"
-import { useEffect, useState } from "react"
-import PizzaMenu from './components/PizzaMenu'
+import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import PizzaMenu from './components/PizzaMenu';
+
+
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setIsLoaded(true)
-  }, [])
+    setIsLoaded(true);
+  }, []);
 
   return (
     <div>
@@ -19,7 +21,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <Spline scene="https://prod.spline.design/IQuCOfATJQs9GmDE/scene.splinecode" />
         </div>
-        <div className="relative z-10">
+        <div className="relative z-10 pointer-events-none">
           <AnimatePresence>
             {isLoaded && (
               <motion.div
@@ -27,7 +29,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 1,
-                  type: "spring",
+                  type: 'spring',
                   bounce: 0.4,
                 }}
                 className="text-center w-full max-w-7xl mx-auto"
@@ -38,7 +40,7 @@ export default function Home() {
                   animate={{ scale: 1 }}
                   transition={{
                     duration: 0.8,
-                    type: "spring",
+                    type: 'spring',
                     bounce: 0.3,
                   }}
                 >
@@ -64,6 +66,7 @@ export default function Home() {
 
       {/* Green Info Section */}
       <section className="min-h-[120vh] flex flex-col items-center justify-center px-4 sm:px-6 bg-primary overflow-hidden">
+      
         <AnimatePresence>
           {isLoaded && (
             <motion.div
@@ -71,24 +74,18 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 1,
-                type: "spring",
+                type: 'spring',
                 bounce: 0.4,
               }}
               className="text-center w-full space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-24 max-w-[100vw]"
             >
-              <p 
-                className="sharp-text text-[2.5rem] xs:text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]"
-              >
+              <p className="sharp-text text-[2.5rem] xs:text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
                 NOW OPEN 11AM
               </p>
-              <p 
-                className="sharp-text text-[2rem] xs:text-[3rem] sm:text-[4rem] md:text-[6rem] lg:text-[8rem] xl:text-[9rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]"
-              >
+              <p className="sharp-text text-[2rem] xs:text-[3rem] sm:text-[4rem] md:text-[6rem] lg:text-[8rem] xl:text-[9rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
                 MONDAY TO SATURDAY
               </p>
-              <p 
-                className="sharp-text text-[2.5rem] xs:text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]"
-              >
+              <p className="sharp-text text-[2.5rem] xs:text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
                 613 217 1195
               </p>
             </motion.div>
@@ -100,7 +97,6 @@ export default function Home() {
       <section className="min-h-screen bg-background">
         <PizzaMenu />
       </section>
-      </div>
-  )
+    </div>
+  );
 }
-

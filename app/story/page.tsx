@@ -1,6 +1,6 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
 
 export default function Story() {
   return (
@@ -14,5 +14,5 @@ export default function Story() {
         IN PROGRESS
       </motion.h1>
     </div>
-  )
-} 
+  );
+}

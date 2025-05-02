@@ -1,20 +1,20 @@
-import type React from "react"
-import type { Metadata } from "next"
-import "./globals.css"
-import Navigation from "./components/Navigation"
+import type React from 'react';
+import type { Metadata } from 'next';
+import './globals.css';
+import Navigation from './components/Navigation';
 
 export const metadata: Metadata = {
-  title: "PIZZA MONSTER",
-  description: "The coolest pizza place in town",
+  title: 'PIZZA MONSTER',
+  description: 'The coolest pizza place in town',
   icons: {
-    icon: "/favicon.ico"
-  }
-}
+    icon: '/favicon.ico',
+  },
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -30,6 +30,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-  )
+  );
 }
-

@@ -1,0 +1,38 @@
+{
+    "rules": {
+        "max_line_length": 100,
+        "indent_size": 2,
+        "max_file_length": 500,
+        "max_function_length": 30,
+        "max_parameters": 4,
+        "max_nesting_level": 3,
+        "prefer_simple_constructs": true,
+        "enforce_consistent_naming": true,
+        "prefer_early_returns": true,
+        "discourage_complex_ternaries": true,
+        "max_method_chaining": 3,
+        "prefer_clear_variable_names": true,
+        "discourage_magic_numbers": true,
+        "prefer_small_functions": true,
+        "enforce_consistent_imports": true,
+        "discourage_deep_nesting": true,
+        "prefer_self_documenting_code": true,
+        "discourage_long_comments": true,
+        "prefer_meaningful_names": true,
+        "discourage_duplicate_code": true
+    },
+    "priorities": {
+        "code_simplicity": "high",
+        "readability": "high",
+        "maintainability": "high",
+        "performance": "medium",
+        "conciseness": "high"
+    },
+    "style_preferences": {
+        "prefer_functional_over_imperative": true,
+        "prefer_immutable_data": true,
+        "prefer_clear_over_clever": true,
+        "prefer_explicit_over_implicit": true,
+        "prefer_consistency_over_individuality": true
+    }
+}

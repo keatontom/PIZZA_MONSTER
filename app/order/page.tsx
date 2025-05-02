@@ -1,92 +1,213 @@
-"use client"
+'use client';
 
-import { motion, AnimatePresence } from "framer-motion"
-import { useEffect, useState } from "react"
-import { Trash2, Plus, Minus, ShoppingCart } from "lucide-react"
-import { Button } from "../components/ui/button"
-import { Input } from "../components/ui/input"
-import { Textarea } from "../components/ui/textarea"
-import { Label } from "../components/ui/label"
-import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { Trash2, Plus, Minus, ShoppingCart } from 'lucide-react';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Textarea } from '../components/ui/textarea';
+import { Label } from '../components/ui/label';
+import Image from 'next/image';
 
 // Types for our order system
 interface OrderItem {
-  id: string
-  name: string
-  quantity: number
-  price: number
-  specialInstructions: string
-  imagePath?: string
+  id: string;
+  name: string;
+  quantity: number;
+  price: number;
+  specialInstructions: string;
+  imagePath?: string;
 }
 
+const ScheduleGrid = ({ orderItems }: { orderItems: OrderItem[] }) => {
+  const [hoveredSlot, setHoveredSlot] = useState<string | null>(null);
+  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+  
+  // Calculate total number of pizzas only (exclude salads)
+  const totalPizzaCount = orderItems.reduce((sum, item) => {
+    // Skip items that contain "KALE CAESAR" or any other salad keywords
+    if (item.name.toLowerCase().includes('kale caesar') || 
+        item.name.toLowerCase().includes('salad')) {
+      return sum;
+    }
+    return sum + item.quantity;
+  }, 0);
+  
+  // Generate time slots from 4:00 to 8:55 in 5-minute increments
+  const generateTimeSlots = () => {
+    const slots = [];
+    for (let hour = 4; hour <= 8; hour++) {
+      const hourSlots = [];
+      for (let minute = 0; minute < 60; minute += 5) {
+        // Skip after 8:55
+        if (hour === 8 && minute >= 56) break;
+        
+        const formattedHour = hour.toString();
+        const formattedMinute = minute.toString().padStart(2, '0');
+        hourSlots.push(`${formattedHour}:${formattedMinute}`);
+      }
+      slots.push(hourSlots);
+    }
+    return slots;
+  };
+
+  const timeSlotsByHour = generateTimeSlots();
+  
+  // Flatten all time slots into a single array for easier calculations
+  const allTimeSlots = timeSlotsByHour.flat();
+  
+  // Function to check if a slot should be blocked based on selection
+  const isSlotBlocked = (time: string) => {
+    if (!selectedSlot) return false;
+    
+    const selectedIndex = allTimeSlots.indexOf(selectedSlot);
+    if (selectedIndex === -1) return false;
+    
+    const currentIndex = allTimeSlots.indexOf(time);
+    
+    // Block slots before the selected one (one per pizza, minus the selected slot itself)
+    const slotsToBlock = totalPizzaCount - 1;
+    
+    // Check if current slot is within the blocked range
+    return currentIndex >= selectedIndex - slotsToBlock && currentIndex < selectedIndex;
+  };
+  
+  // Function to select a time slot
+  const handleSelectSlot = (time: string) => {
+    // Check if slot can be selected (enough slots before it for all pizzas)
+    const slotIndex = allTimeSlots.indexOf(time);
+    if (slotIndex < totalPizzaCount - 1) {
+      // Not enough slots before this one
+      return;
+    }
+    
+    setSelectedSlot(time);
+  };
+
+  return (
+    <div className="mb-6 mt-2">
+      <h3 className="sharp-text text-lg font-bold text-primary mb-3">
+        CHOOSE YOUR PICKUP TIME
+        {totalPizzaCount > 0 && (
+          <span className="text-sm font-normal ml-2">
+            ({totalPizzaCount} {totalPizzaCount === 1 ? 'pizza' : 'pizzas'} = {totalPizzaCount * 5} min)
+          </span>
+        )}
+      </h3>
+      <div className="flex flex-col gap-1.5">
+        {timeSlotsByHour.map((hourSlots, hourIndex) => (
+          <div key={`hour-${hourIndex}`} className="flex items-center">
+            <div className="w-8 text-right pr-1 text-primary font-bold text-xs">
+              {4 + hourIndex}PM
+            </div>
+            <div className="flex-1 grid grid-cols-12 gap-1">
+              {hourSlots.map((time) => {
+                const blocked = isSlotBlocked(time);
+                const isSelected = selectedSlot === time;
+                return (
+                  <div
+                    key={time}
+                    className={`aspect-square flex items-center justify-center transition-colors rounded-sm ${
+                      isSelected || blocked
+                        ? 'bg-primary text-white cursor-pointer' 
+                        : 'bg-primary/20 hover:bg-primary/40 cursor-pointer'
+                    }`}
+                    style={{ minWidth: '18px', minHeight: '18px' }}
+                    onMouseEnter={() => setHoveredSlot(time)}
+                    onMouseLeave={() => setHoveredSlot(null)}
+                    onClick={() => !blocked && handleSelectSlot(time)}
+                  >
+                    {hoveredSlot === time && (
+                      <span className="text-white font-bold text-[9px] whitespace-nowrap absolute z-10">
+                        {time}
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function OrdersPage() {
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [orderItems, setOrderItems] = useState<OrderItem[]>([])
-  const [name, setName] = useState("")
-  const [phone, setPhone] = useState("")
-  const [address, setAddress] = useState("")
-  const [specialInstructions, setSpecialInstructions] = useState("")
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [specialInstructions, setSpecialInstructions] = useState('');
 
   // Menu items from your PizzaMenu component
   const menuItems = [
     {
-      id: "marinara",
+      id: 'marinara',
       name: "MARINARA- don't underestimate simplicity, this pie is legit",
-      description: "red sauce, garlic oil, basil",
+      description: 'red sauce, garlic oil, basil',
       basePrice: 16,
-      imagePath: "/pizzas/marinara.png",
+      imagePath: '/pizzas/marinara.png',
     },
     {
-      id: "margherita",
-      name: "MARGHERITA- the Queen for a reason",
-      description: "red sauce, mozzarella, basil, parm",
+      id: 'margherita',
+      name: 'MARGHERITA- the Queen for a reason',
+      description: 'red sauce, mozzarella, basil, parm',
       basePrice: 19,
-      imagePath: "/pizzas/marg.png",
+      imagePath: '/pizzas/marg.png',
     },
     {
-      id: "pepperoni",
+      id: 'pepperoni',
       name: "PEPPERONI- salty, sweet, spicy, freakin' awesome",
-      description: "red sauce, pepperoni, garlic honey, parm",
+      description: 'red sauce, pepperoni, garlic honey, parm',
       basePrice: 23,
-      imagePath: "/pizzas/Pep.png",
+      imagePath: '/pizzas/Pep.png',
     },
     {
-      id: "buffalo",
-      name: "BUFFALO CHICKEN OR CAULIFLOWER- spicy, tangy, and a bit of that funk",
-      description: "garlic butter, sesame, roasted chicken OR cauliflower, wing sauce, blue cheese crema, green onion, parm",
+      id: 'buffalo',
+      name: 'BUFFALO CHICKEN OR CAULIFLOWER- spicy, tangy, and a bit of that funk',
+      description:
+        'garlic butter, sesame, roasted chicken OR cauliflower, wing sauce, blue cheese crema, green onion, parm',
       basePrice: 24,
-      imagePath: "/pizzas/buff.png",
+      imagePath: '/pizzas/buff.png',
     },
     {
-      id: "pineapple",
+      id: 'pineapple',
       name: "PINEAPPLE - f@ck you, it's delicious",
-      description: "fresh pineapple, pepperoni, mozzarella, house-made pickled jalapenos, parm",
+      description: 'fresh pineapple, pepperoni, mozzarella, house-made pickled jalapenos, parm',
       basePrice: 23,
-      imagePath: "/pizzas/pineapple.png",
+      imagePath: '/pizzas/pineapple.png',
     },
     {
-      id: "jalapeno",
-      name: "JALAPENO- a bit of fire for your face",
-      description: "red sauce, pepperoni, house-made pickled jalapenos, mozzarella, parm",
+      id: 'jalapeno',
+      name: 'JALAPENO- a bit of fire for your face',
+      description: 'red sauce, pepperoni, house-made pickled jalapenos, mozzarella, parm',
       basePrice: 25,
-      imagePath: "/pizzas/jala.png",
+      imagePath: '/pizzas/jala.png',
     },
     {
-      id: "kale-caesar",
-      name: "KALE CAESAR- creamy, garlicky, tangy, no anchovies",
-      description: "kale, garlic, house-made pickled onions, croutons, parm",
+      id: 'kale-caesar',
+      name: 'KALE CAESAR- creamy, garlicky, tangy, no anchovies',
+      description: 'kale, garlic, house-made pickled onions, croutons, parm',
       basePrice: 13,
-      imagePath: "/salads/kale.png",
+      imagePath: '/salads/kale.png',
     },
-  ]
+  ];
 
   useEffect(() => {
-    setIsLoaded(true)
-  }, [])
+    setIsLoaded(true);
+  }, []);
 
   // Add item to order
-  const addToOrder = (menuItem: { id: string; name: string; basePrice: number; description: string; imagePath: string }) => {
-    const existingItemIndex = orderItems.findIndex((item) => item.name === menuItem.name)
+  const addToOrder = (menuItem: {
+    id: string;
+    name: string;
+    basePrice: number;
+    description: string;
+    imagePath: string;
+  }) => {
+    const existingItemIndex = orderItems.findIndex(item => item.name === menuItem.name);
 
     if (existingItemIndex !== -1) {
       setOrderItems(
@@ -95,58 +216,58 @@ export default function OrdersPage() {
             return {
               ...item,
               quantity: item.quantity + 1,
-            }
+            };
           }
-          return item
-        }),
-      )
+          return item;
+        })
+      );
     } else {
       const newItem: OrderItem = {
         id: `${menuItem.id}-${Date.now()}`,
         name: menuItem.name,
         quantity: 1,
         price: menuItem.basePrice,
-        specialInstructions: "",
+        specialInstructions: '',
         imagePath: menuItem.imagePath,
-      }
-      setOrderItems([...orderItems, newItem])
+      };
+      setOrderItems([...orderItems, newItem]);
     }
-  }
+  };
 
   // Remove item from order
   const removeFromOrder = (id: string) => {
-    setOrderItems(orderItems.filter((item) => item.id !== id))
-  }
+    setOrderItems(orderItems.filter(item => item.id !== id));
+  };
 
   // Update item quantity
   const updateQuantity = (id: string, change: number) => {
     setOrderItems(
-      orderItems.map((item) => {
+      orderItems.map(item => {
         if (item.id === id) {
-          const newQuantity = Math.max(1, item.quantity + change)
-          return { ...item, quantity: newQuantity }
+          const newQuantity = Math.max(1, item.quantity + change);
+          return { ...item, quantity: newQuantity };
         }
-        return item
-      }),
-    )
-  }
+        return item;
+      })
+    );
+  };
 
   // Update item instructions
   const updateInstructions = (id: string, instructions: string) => {
     setOrderItems(
-      orderItems.map((item) => {
+      orderItems.map(item => {
         if (item.id === id) {
-          return { ...item, specialInstructions: instructions }
+          return { ...item, specialInstructions: instructions };
         }
-        return item
-      }),
-    )
-  }
+        return item;
+      })
+    );
+  };
 
   // Calculate order total
   const calculateTotal = () => {
-    return orderItems.reduce((total, item) => total + item.price * item.quantity, 0)
-  }
+    return orderItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
 
   // Submit order
   const submitOrder = () => {
@@ -156,22 +277,26 @@ export default function OrdersPage() {
       customer: { name, phone, address },
       specialInstructions,
       total: calculateTotal(),
-    }
+    };
 
-    console.log("Order submitted:", order)
-    alert("Your order has been placed! We'll call you when it's ready.")
+    console.log('Order submitted:', order);
+    alert("Your order has been placed! We'll call you when it's ready.");
 
     // Reset form
-    setOrderItems([])
-    setSpecialInstructions("")
-  }
+    setOrderItems([]);
+    setSpecialInstructions('');
+  };
 
   // Fix TypeScript errors for event handlers
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)
-  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => setAddress(e.target.value)
-  const handleInstructionsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setSpecialInstructions(e.target.value)
-  const handleItemInstructionsChange = (id: string) => (e: React.ChangeEvent<HTMLTextAreaElement>) => updateInstructions(id, e.target.value)
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value);
+  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setAddress(e.target.value);
+  const handleInstructionsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+    setSpecialInstructions(e.target.value);
+  const handleItemInstructionsChange =
+    (id: string) => (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+      updateInstructions(id, e.target.value);
 
   return (
     <div className="pt-24 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
@@ -182,7 +307,7 @@ export default function OrdersPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.8,
-              type: "spring",
+              type: 'spring',
               bounce: 0.4,
             }}
             className="w-full"
@@ -190,13 +315,13 @@ export default function OrdersPage() {
             <motion.h1
               className="sharp-text text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-extrabold text-primary leading-none tracking-normal mb-12"
               style={{
-                WebkitTextStroke: "2px var(--primary)",
+                WebkitTextStroke: '2px var(--primary)',
               }}
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               transition={{
                 duration: 0.8,
-                type: "spring",
+                type: 'spring',
                 bounce: 0.3,
               }}
             >
@@ -211,10 +336,12 @@ export default function OrdersPage() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="bg-white/95 p-6 rounded-lg border-2 border-primary/20 shadow-lg backdrop-blur-sm"
               >
-                <h2 className="sharp-text text-3xl font-bold text-primary mb-6">ADD TO YOUR ORDER</h2>
+                <h2 className="sharp-text text-3xl font-bold text-primary mb-6">
+                  ADD TO YOUR ORDER
+                </h2>
 
                 <div className="grid grid-cols-1 gap-6">
-                  {menuItems.map((item) => (
+                  {menuItems.map(item => (
                     <div
                       key={item.id}
                       className="bg-white p-4 rounded-lg border border-primary/10 shadow-md hover:shadow-lg transition-all hover:border-primary/30"
@@ -229,8 +356,12 @@ export default function OrdersPage() {
                           />
                         </div>
                         <div className="flex-grow">
-                          <h3 className="sharp-text text-xl font-bold text-primary/90">{item.name}</h3>
-                          <p className="text-primary font-bold mb-2">${item.basePrice.toFixed(2)}</p>
+                          <h3 className="sharp-text text-xl font-bold text-primary/90">
+                            {item.name}
+                          </h3>
+                          <p className="text-primary font-bold mb-2">
+                            ${item.basePrice.toFixed(2)}
+                          </p>
                           <p className="text-primary/70 text-sm mb-3">{item.description}</p>
                           <Button
                             onClick={() => addToOrder(item)}
@@ -263,7 +394,7 @@ export default function OrdersPage() {
                 ) : (
                   <>
                     <div className="space-y-4 mb-6">
-                      {orderItems.map((item) => (
+                      {orderItems.map(item => (
                         <div
                           key={item.id}
                           className="bg-white p-4 rounded-lg border border-primary/10 shadow-md transition-all hover:border-primary/30"
@@ -281,7 +412,9 @@ export default function OrdersPage() {
                             )}
                             <div className="flex-grow">
                               <div className="flex justify-between items-start">
-                                <h3 className="sharp-text text-lg font-bold text-primary/90">{item.name}</h3>
+                                <h3 className="sharp-text text-lg font-bold text-primary/90">
+                                  {item.name}
+                                </h3>
                                 <Button
                                   variant="ghost"
                                   size="icon"
@@ -293,7 +426,10 @@ export default function OrdersPage() {
                               </div>
 
                               <div className="mb-3">
-                                <Label htmlFor={`instructions-${item.id}`} className="text-primary/90 text-sm font-bold">
+                                <Label
+                                  htmlFor={`instructions-${item.id}`}
+                                  className="text-primary/90 text-sm font-bold"
+                                >
                                   Special Instructions
                                 </Label>
                                 <Textarea
@@ -316,7 +452,9 @@ export default function OrdersPage() {
                                   >
                                     <Minus className="h-4 w-4" />
                                   </Button>
-                                  <span className="text-primary font-bold w-8 text-center">{item.quantity}</span>
+                                  <span className="text-primary font-bold w-8 text-center">
+                                    {item.quantity}
+                                  </span>
                                   <Button
                                     variant="outline"
                                     size="icon"
@@ -326,13 +464,17 @@ export default function OrdersPage() {
                                     <Plus className="h-4 w-4" />
                                   </Button>
                                 </div>
-                                <span className="text-primary font-bold">${(item.price * item.quantity).toFixed(2)}</span>
+                                <span className="text-primary font-bold">
+                                  ${(item.price * item.quantity).toFixed(2)}
+                                </span>
                               </div>
                             </div>
                           </div>
                         </div>
                       ))}
                     </div>
+
+                    <ScheduleGrid orderItems={orderItems} />
 
                     <div className="border-t-2 border-primary/20 pt-4 mb-6">
                       <div className="flex justify-between items-center">
@@ -413,6 +555,5 @@ export default function OrdersPage() {
         )}
       </AnimatePresence>
     </div>
-  )
+  );
 }
-

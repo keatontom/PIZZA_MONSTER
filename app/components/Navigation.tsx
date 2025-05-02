@@ -1,25 +1,25 @@
-'use client'
+'use client';
 
-import Link from "next/link"
-import { Instagram } from "lucide-react"
-import { usePathname } from "next/navigation"
+import Link from 'next/link';
+import { Instagram } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 export default function Navigation() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <nav className="px-4 h-14 flex items-center justify-between md:justify-center relative tracking-wide font-normal">
       <div className="hidden md:flex absolute left-4 items-center space-x-4 sm:space-x-6 text-base">
-        <Link 
-          href="/hours" 
+        <Link
+          href="/hours"
           className={`sharp-text text-white relative after:absolute after:left-0 after:bottom-[-4px] after:h-[1px] after:bg-white after:transition-all after:duration-300 ${
             pathname === '/hours' ? 'after:w-full' : 'after:w-0'
           } hover:after:w-full`}
         >
           HOURS
         </Link>
-        <Link 
-          href="/story" 
+        <Link
+          href="/story"
           className={`sharp-text text-white relative after:absolute after:left-0 after:bottom-[-4px] after:h-[1px] after:bg-white after:transition-all after:duration-300 ${
             pathname === '/story' ? 'after:w-full' : 'after:w-0'
           } hover:after:w-full`}
@@ -48,7 +48,7 @@ export default function Navigation() {
         </Link>
       </div>
 
-      <Link 
+      <Link
         href="/"
         className="sharp-text text-white text-sm tracking-[0.2em] font-medium relative after:absolute after:left-0 after:bottom-[-4px] after:h-[1px] after:bg-white after:w-0 after:transition-all after:duration-300 hover:after:w-full"
       >
@@ -71,5 +71,5 @@ export default function Navigation() {
         </Link>
       </div>
     </nav>
-  )
-} 
+  );
+}
