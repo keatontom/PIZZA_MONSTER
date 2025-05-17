@@ -99,7 +99,7 @@ export default function Home() {
               className="text-center w-full max-w-7xl mx-auto"
             >
               <motion.h1
-                className="sharp-text text-[3rem] xs:text-[4rem] sm:text-[5.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-extrabold text-primary leading-none tracking-normal whitespace-nowrap [webkit-text-stroke:1px_var(--primary)] sm:[webkit-text-stroke:2px_var(--primary)] mx-auto text-center"
+                className="sharp-text sharp-text-h1 font-extrabold text-primary leading-none tracking-normal whitespace-nowrap [webkit-text-stroke:1px_var(--primary)] sm:[webkit-text-stroke:2px_var(--primary)] mx-auto text-center"
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.8, type: 'spring', bounce: 0.3 }}
@@ -113,7 +113,7 @@ export default function Home() {
                 className="mt-6 sm:mt-8 md:mt-12 space-y-4 sm:space-y-6 md:space-y-8"
               >
                 <div className="space-y-2">
-                  <p className="sharp-text text-[2rem] xs:text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight font-bold text-primary tracking-normal break-all antialiased">
+                  <p className="sharp-text sharp-text-p leading-tight font-bold text-primary tracking-normal break-all antialiased">
                     213 MONTREAL STREET
                   </p>
                 </div>
@@ -121,12 +121,12 @@ export default function Home() {
             </motion.div>
           ) : (
             <div className="text-center w-full max-w-7xl mx-auto">
-              <h1 className="sharp-text text-[3rem] xs:text-[4rem] sm:text-[5.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-extrabold text-primary leading-none tracking-normal whitespace-nowrap [webkit-text-stroke:1px_var(--primary)] sm:[webkit-text-stroke:2px_var(--primary)]">
+              <h1 className="sharp-text sharp-text-h1 font-extrabold text-primary leading-none tracking-normal whitespace-nowrap [webkit-text-stroke:1px_var(--primary)] sm:[webkit-text-stroke:2px_var(--primary)]">
                 PIZZA MONSTER
               </h1>
               <div className="mt-6 sm:mt-8 md:mt-12 space-y-4 sm:space-y-6 md:space-y-8">
                 <div className="space-y-2">
-                  <p className="sharp-text text-[2rem] xs:text-[2.5rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] leading-tight font-bold text-primary tracking-normal break-all antialiased">
+                  <p className="sharp-text sharp-text-p leading-tight font-bold text-primary tracking-normal break-all antialiased">
                     213 MONTREAL STREET
                   </p>
                 </div>
@@ -146,25 +146,25 @@ export default function Home() {
               transition={{ duration: 1, type: 'spring', bounce: 0.4 }}
               className="text-center w-full space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-24 max-w-[100vw]"
             >
-              <p className="sharp-text text-[2.5rem] xs:text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
+              <p className="sharp-text sharp-text-h2 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
                 NOW OPEN 11AM
               </p>
-              <p className="sharp-text text-[2rem] xs:text-[3rem] sm:text-[4rem] md:text-[6rem] lg:text-[8rem] xl:text-[9rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
+              <p className="sharp-text sharp-text-h3 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
                 MONDAY TO SATURDAY
               </p>
-              <p className="sharp-text text-[2.5rem] xs:text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
+              <p className="sharp-text sharp-text-h2 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
                 613 217 1195
               </p>
             </motion.div>
           ) : (
             <div className="text-center w-full space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-24 max-w-[100vw]">
-              <p className="sharp-text text-[2.5rem] xs:text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
+              <p className="sharp-text sharp-text-h2 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
                 NOW OPEN 11AM
               </p>
-              <p className="sharp-text text-[2rem] xs:text-[3rem] sm:text-[4rem] md:text-[6rem] lg:text-[8rem] xl:text-[9rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
+              <p className="sharp-text sharp-text-h3 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
                 MONDAY TO SATURDAY
               </p>
-              <p className="sharp-text text-[2.5rem] xs:text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
+              <p className="sharp-text sharp-text-h2 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
                 613 217 1195
               </p>
             </div>
@@ -176,19 +176,13 @@ export default function Home() {
       <section className="min-h-screen bg-background relative z-20">
         <div className="bg-white py-8 overflow-x-hidden relative">
           <div className="max-w-[95%] sm:max-w-[90%] mx-auto relative z-10">
-            <h2 className="sharp-text text-[3.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] font-bold text-primary tracking-normal text-center mb-8 sm:mb-12">
+            <h2 className="sharp-text sharp-text-h2 font-bold text-primary tracking-normal text-center mb-8 sm:mb-12">
               PIES
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 md:gap-x-16 lg:gap-x-24 gap-y-12 sm:gap-y-16 mb-16 sm:mb-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-8 sm:gap-y-12 md:gap-y-16 mb-16 sm:mb-20">
               {pizzas.map((pizza) => (
                 <div key={pizza.name} className="group">
-                  <div
-                    className={`relative -ml-[2.5%] sm:-ml-[5%] mb-4 sm:mb-6 transition-transform duration-300 group-hover:scale-105`}
-                    style={{
-                      width: pizza.imageWidth || "105%",
-                      aspectRatio: pizza.aspectRatio || "1/1",
-                    }}
-                  >
+                  <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md aspect-square mx-auto mb-4 sm:mb-6 transition-transform duration-300 group-hover:scale-105">
                     <Image
                       src={pizza.imagePath}
                       alt={pizza.name}
@@ -214,7 +208,7 @@ export default function Home() {
               ))}
             </div>
 
-            <h2 className="sharp-text text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-bold text-primary tracking-normal text-center mb-8 sm:mb-12">
+            <h2 className="sharp-text sharp-text-h2 font-bold text-primary tracking-normal text-center mb-8 sm:mb-12">
               SALAD
             </h2>
             <div className="max-w-xl sm:max-w-2xl mx-auto px-4 sm:px-0">

@@ -9,7 +9,7 @@ export default function Story() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-[46.8px] leading-[46.8px] font-bold text-primary tracking-normal antialiased"
+        className="sharp-text sharp-text-h1 font-bold text-primary tracking-normal antialiased"
       >
         IN PROGRESS
       </motion.h1>

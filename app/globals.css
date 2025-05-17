@@ -51,3 +51,19 @@
 .sharp-text {
   font-family: 'Montserrat', sans-serif;
 }
+
+.sharp-text-h1 {
+  font-size: clamp(3rem, 12vw, 11rem);
+}
+
+.sharp-text-h2 {
+  font-size: clamp(2.5rem, 8vw, 7rem);
+}
+
+.sharp-text-h3 {
+  font-size: clamp(2rem, 6vw, 6rem);
+}
+
+.sharp-text-p {
+  font-size: clamp(1.5rem, 4vw, 4rem);
+}

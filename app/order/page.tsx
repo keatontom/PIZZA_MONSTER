@@ -86,14 +86,15 @@ const ScheduleGrid = ({ orderItems }: { orderItems: OrderItem[] }) => {
 
   return (
     <div className="mb-6 mt-2">
-      <h3 className="sharp-text text-lg font-bold text-primary mb-3">
+      <h3 className="sharp-text text-3xl font-bold text-primary mb-6">
         CHOOSE YOUR PICKUP TIME
         {totalPizzaCount > 0 && (
-          <span className="text-sm font-normal ml-2">
-            ({totalPizzaCount} {totalPizzaCount === 1 ? 'pizza' : 'pizzas'} = {totalPizzaCount * 5} min)
-          </span>
+          <p className="text-sm font-normal ml-2">
+           ({totalPizzaCount} {totalPizzaCount === 1 ? 'pizza' : 'pizzas'} = {totalPizzaCount * 5} min)
+          </p>
         )}
       </h3>
+
       <div className="flex flex-col gap-1.5">
         {timeSlotsByHour.map((hourSlots, hourIndex) => (
           <div key={`hour-${hourIndex}`} className="flex items-center">
@@ -145,28 +146,28 @@ export default function OrdersPage() {
   const menuItems = [
     {
       id: 'marinara',
-      name: "MARINARA- don't underestimate simplicity, this pie is legit",
+      name: "MARINARA",
       description: 'red sauce, garlic oil, basil',
       basePrice: 16,
       imagePath: '/pizzas/marinara.png',
     },
     {
       id: 'margherita',
-      name: 'MARGHERITA- the Queen for a reason',
+      name: 'MARGHERITA',
       description: 'red sauce, mozzarella, basil, parm',
       basePrice: 19,
       imagePath: '/pizzas/marg.png',
     },
     {
       id: 'pepperoni',
-      name: "PEPPERONI- salty, sweet, spicy, freakin' awesome",
+      name: "PEPPERONI",
       description: 'red sauce, pepperoni, garlic honey, parm',
       basePrice: 23,
       imagePath: '/pizzas/Pep.png',
     },
     {
       id: 'buffalo',
-      name: 'BUFFALO CHICKEN OR CAULIFLOWER- spicy, tangy, and a bit of that funk',
+      name: 'BUFFALO CHICKEN OR CAULIFLOWER',
       description:
         'garlic butter, sesame, roasted chicken OR cauliflower, wing sauce, blue cheese crema, green onion, parm',
       basePrice: 24,
@@ -174,21 +175,21 @@ export default function OrdersPage() {
     },
     {
       id: 'pineapple',
-      name: "PINEAPPLE - f@ck you, it's delicious",
+      name: "PINEAPPLE",
       description: 'fresh pineapple, pepperoni, mozzarella, house-made pickled jalapenos, parm',
       basePrice: 23,
       imagePath: '/pizzas/pineapple.png',
     },
     {
       id: 'jalapeno',
-      name: 'JALAPENO- a bit of fire for your face',
+      name: 'JALAPENO',
       description: 'red sauce, pepperoni, house-made pickled jalapenos, mozzarella, parm',
       basePrice: 25,
       imagePath: '/pizzas/jala.png',
     },
     {
       id: 'kale-caesar',
-      name: 'KALE CAESAR- creamy, garlicky, tangy, no anchovies',
+      name: 'KALE CAESAR',
       description: 'kale, garlic, house-made pickled onions, croutons, parm',
       basePrice: 13,
       imagePath: '/salads/kale.png',
@@ -328,7 +329,7 @@ export default function OrdersPage() {
               YOUR ORDER
             </motion.h1>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-8 sm:gap-y-12 md:gap-y-16">
               {/* Menu Section */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
