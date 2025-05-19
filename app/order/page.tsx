@@ -118,7 +118,7 @@ const ScheduleGrid = ({ orderItems }: { orderItems: OrderItem[] }) => {
                     onMouseLeave={() => setHoveredSlot(null)}
                     onClick={() => !blocked && handleSelectSlot(time)}
                   >
-                    {hoveredSlot === time && (
+                    {(hoveredSlot === time || isSelected) && (
                       <span className="text-white font-bold text-[9px] whitespace-nowrap absolute z-10">
                         {time}
                       </span>

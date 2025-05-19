@@ -137,7 +137,7 @@ export default function Home() {
       </section>
 
       {/* Green Info Section */}
-      <section className="min-h-[120vh] flex flex-col items-center justify-center px-4 sm:px-6 bg-primary overflow-hidden relative">
+      <section className="min-h-[120vh] flex flex-col items-center justify-center bg-primary overflow-hidden relative w-full">
         <div className="relative z-10 pointer-events-none">
           {isMounted ? (
             <motion.div
@@ -175,7 +175,7 @@ export default function Home() {
       {/* Menu Section */}
       <section className="min-h-screen bg-background relative z-20">
         <div className="bg-white py-8 overflow-x-hidden relative">
-          <div className="max-w-[95%] sm:max-w-[90%] mx-auto relative z-10">
+          <div className="w-full relative z-10">
             <h2 className="sharp-text sharp-text-h2 font-bold text-primary tracking-normal text-center mb-8 sm:mb-12">
               PIES
             </h2>
