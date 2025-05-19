@@ -99,7 +99,7 @@ export default function Home() {
               className="text-center w-full max-w-7xl mx-auto"
             >
               <motion.h1
-                className="sharp-text sharp-text-h1 font-extrabold text-primary leading-none tracking-normal whitespace-nowrap [webkit-text-stroke:1px_var(--primary)] sm:[webkit-text-stroke:2px_var(--primary)] mx-auto text-center"
+                className="text-center sharp-text sharp-text-h1 font-extrabold text-primary leading-none tracking-normal whitespace-nowrap [webkit-text-stroke:1px_var(--primary)] sm:[webkit-text-stroke:2px_var(--primary)] mx-auto"
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.8, type: 'spring', bounce: 0.3 }}
@@ -121,7 +121,7 @@ export default function Home() {
             </motion.div>
           ) : (
             <div className="text-center w-full max-w-7xl mx-auto">
-              <h1 className="sharp-text sharp-text-h1 font-extrabold text-primary leading-none tracking-normal whitespace-nowrap [webkit-text-stroke:1px_var(--primary)] sm:[webkit-text-stroke:2px_var(--primary)]">
+              <h1 className="text-center sharp-text sharp-text-h1 font-extrabold text-primary leading-none tracking-normal whitespace-nowrap [webkit-text-stroke:1px_var(--primary)] sm:[webkit-text-stroke:2px_var(--primary)]">
                 PIZZA MONSTER
               </h1>
               <div className="mt-6 sm:mt-8 md:mt-12 space-y-4 sm:space-y-6 md:space-y-8">
@@ -147,24 +147,24 @@ export default function Home() {
               className="text-center w-full space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-24 max-w-[100vw]"
             >
               <p className="sharp-text sharp-text-h2 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
-                NOW OPEN 11AM
+                PHONE LINE OPENS AT 2PM
               </p>
               <p className="sharp-text sharp-text-h3 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
-                MONDAY TO SATURDAY
+                WEDNESDAY TO SATURDAY
               </p>
-              <p className="sharp-text sharp-text-h2 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
+              <p className="sharp-text sharp-text-h1 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
                 613 217 1195
               </p>
             </motion.div>
           ) : (
             <div className="text-center w-full space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-24 max-w-[100vw]">
               <p className="sharp-text sharp-text-h2 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
-                NOW OPEN 11AM
+                PHONE LINE OPENS AT 2PM
               </p>
               <p className="sharp-text sharp-text-h3 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
-                MONDAY TO SATURDAY
+                WEDNESDAY TO SATURDAY
               </p>
-              <p className="sharp-text sharp-text-h2 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
+              <p className="sharp-text sharp-text-h1 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
                 613 217 1195
               </p>
             </div>
