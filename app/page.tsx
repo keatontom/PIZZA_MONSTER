@@ -1,8 +1,6 @@
 'use client';
 
 import Spline from '@splinetool/react-spline';
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import Image from "next/image";
 
 interface PizzaItem {
@@ -76,12 +74,6 @@ const salads: SaladItem[] = [
 ];
 
 export default function Home() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   return (
     <div>
       <div className="fixed inset-0 z-10">
@@ -89,86 +81,25 @@ export default function Home() {
       </div>
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 bg-background relative">
-
         <div className="relative z-10 pointer-events-none">
-          {isMounted ? (
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, type: 'spring', bounce: 0.4 }}
-              className="text-center w-full max-w-7xl mx-auto"
-            >
-              <motion.h1
-                className="text-center sharp-text sharp-text-h1 font-extrabold text-primary leading-none tracking-normal whitespace-nowrap [webkit-text-stroke:1px_var(--primary)] sm:[webkit-text-stroke:2px_var(--primary)] mx-auto"
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.8, type: 'spring', bounce: 0.3 }}
-              >
-                PIZZA MONSTER
-              </motion.h1>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="mt-6 sm:mt-8 md:mt-12 space-y-4 sm:space-y-6 md:space-y-8"
-              >
-                <div className="space-y-2">
-                  <p className="sharp-text sharp-text-p leading-tight font-bold text-primary tracking-normal break-all antialiased">
-                    213 MONTREAL STREET
-                  </p>
-                </div>
-              </motion.div>
-            </motion.div>
-          ) : (
-            <div className="text-center w-full max-w-7xl mx-auto">
-              <h1 className="text-center sharp-text sharp-text-h1 font-extrabold text-primary leading-none tracking-normal whitespace-nowrap [webkit-text-stroke:1px_var(--primary)] sm:[webkit-text-stroke:2px_var(--primary)]">
-                PIZZA MONSTER
-              </h1>
-              <div className="mt-6 sm:mt-8 md:mt-12 space-y-4 sm:space-y-6 md:space-y-8">
-                <div className="space-y-2">
-                  <p className="sharp-text sharp-text-p leading-tight font-bold text-primary tracking-normal break-all antialiased">
-                    213 MONTREAL STREET
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
+          <h1 className="sharp-text sharp-text-h1 font-extrabold text-primary tracking-normal [webkit-text-stroke:1px_var(--primary)] sm:[webkit-text-stroke:2px_var(--primary)] text-center w-full whitespace-nowrap">
+            PIZZA MONSTER
+          </h1>
+          <p className="sharp-text sharp-text-p font-bold text-primary text-center w-full whitespace-nowrap">
+            213 MONTREAL STREET
+          </p>
         </div>
       </section>
 
       {/* Green Info Section */}
       <section className="min-h-[120vh] flex flex-col items-center justify-center bg-primary overflow-hidden relative w-full">
         <div className="relative z-10 pointer-events-none">
-          {isMounted ? (
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, type: 'spring', bounce: 0.4 }}
-              className="text-center w-full space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-24 max-w-[100vw]"
-            >
-              <p className="sharp-text sharp-text-h2 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
-                PHONE LINE OPENS AT 2PM
-              </p>
-              <p className="sharp-text sharp-text-h3 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
-                WEDNESDAY TO SATURDAY
-              </p>
-              <p className="sharp-text sharp-text-h1 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
-                613 217 1195
-              </p>
-            </motion.div>
-          ) : (
-            <div className="text-center w-full space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-24 max-w-[100vw]">
-              <p className="sharp-text sharp-text-h2 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
-                PHONE LINE OPENS AT 2PM
-              </p>
-              <p className="sharp-text sharp-text-h3 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
-                WEDNESDAY TO SATURDAY
-              </p>
-              <p className="sharp-text sharp-text-h1 font-bold text-background tracking-normal antialiased leading-none whitespace-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] lg:[webkit-text-stroke:3px_var(--background)]">
-                613 217 1195
-              </p>
-            </div>
-          )}
+          <h2 className="sharp-text sharp-text-h2 font-bold text-background tracking-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] text-center w-full whitespace-nowrap text-[clamp(1.5rem,5vw,2.5rem)] leading-tight">
+            PHONE OPENS AT 2PM
+          </h2>
+          <h1 className="sharp-text sharp-text-h1 font-bold text-background tracking-normal [webkit-text-stroke:1px_var(--background)] sm:[webkit-text-stroke:2px_var(--background)] text-center w-full whitespace-nowrap text-[clamp(0.9rem,10vw,1.6rem)] px-2">
+            613 217 1195
+          </h1>
         </div>
       </section>
 

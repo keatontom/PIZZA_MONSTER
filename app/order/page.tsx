@@ -139,7 +139,6 @@ export default function OrdersPage() {
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
   const [specialInstructions, setSpecialInstructions] = useState('');
 
   // Menu items from your PizzaMenu component
@@ -245,11 +244,14 @@ export default function OrdersPage() {
     setOrderItems(
       orderItems.map(item => {
         if (item.id === id) {
-          const newQuantity = Math.max(1, item.quantity + change);
+          const newQuantity = item.quantity + change;
+          if (newQuantity <= 0) {
+            return null; // This will be filtered out
+          }
           return { ...item, quantity: newQuantity };
         }
         return item;
-      })
+      }).filter(Boolean) as OrderItem[] // Filter out null values
     );
   };
 
@@ -275,7 +277,7 @@ export default function OrdersPage() {
     // In a real app, you would send this to your backend
     const order = {
       items: orderItems,
-      customer: { name, phone, address },
+      customer: { name, phone },
       specialInstructions,
       total: calculateTotal(),
     };
@@ -291,10 +293,7 @@ export default function OrdersPage() {
   // Fix TypeScript errors for event handlers
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value);
-  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setAddress(e.target.value);
-  const handleInstructionsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
-    setSpecialInstructions(e.target.value);
+  const handleInstructionsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setSpecialInstructions(e.target.value);
   const handleItemInstructionsChange =
     (id: string) => (e: React.ChangeEvent<HTMLTextAreaElement>) =>
       updateInstructions(id, e.target.value);
@@ -510,19 +509,6 @@ export default function OrdersPage() {
                           onChange={handlePhoneChange}
                           className="border-primary/20 bg-white text-primary placeholder:text-primary/40 focus:border-primary/50"
                           placeholder="Your phone number"
-                        />
-                      </div>
-
-                      <div>
-                        <Label htmlFor="address" className="text-primary/90 font-bold">
-                          Address
-                        </Label>
-                        <Input
-                          id="address"
-                          value={address}
-                          onChange={handleAddressChange}
-                          className="border-primary/20 bg-white text-primary placeholder:text-primary/40 focus:border-primary/50"
-                          placeholder="Delivery address"
                         />
                       </div>
 
